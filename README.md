@@ -1,7 +1,9 @@
 apache2sqlite
 =============
 takes apache logs and squirts them into a sqlite database 
-as fast as possible. 
+as fast as possible. benchmark on a heavily utilitzed 
+syslog server (2.66Ghz Xeon) still ingested logs at 
+around 19,000 log lines per second. 
 
 ##Uses
 * produce reports and quick metrics.
@@ -26,3 +28,4 @@ as fast as possible.
 `./apache2sqlite.pl somesite /var/log/apache2/somesite.access.log`
 
 `grep -v "GET /server-status" /var/log/apache2/somesite.access.log | ./apache2sqlite.pl somesite_pruned -`
+
