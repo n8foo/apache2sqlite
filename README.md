@@ -1,6 +1,6 @@
 apache2sqlite
 =============
-a light weight and fast apache2 to sqlite processor, written in Perl. 
+a simple but fast apache2 to sqlite processor, written in Perl. 
 
 ##Summary
 processes apache2 logs and stores them into a sqlite database 
