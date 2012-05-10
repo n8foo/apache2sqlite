@@ -1,19 +1,13 @@
 #!/usr/bin/perl -w
 
-use DBI;
-use strict;
-
 ##############################################
 # apache2sqlite.pl
-# Nathan Hubbard @n8foo
-# Mon Apr 30 20:24:03 CDT 2012
+# Nathan Hubbard @n8foo 
+# http://github.com/n8foo/apache2sqlite
 ##############################################
-# takes apache logs and squirts them into 
-# sqlite database as fast as possible.
-# 
-# reqirements: sqlite3 ; perl-libdbd-sqlite3
-# ubuntu/debian: sudo apt-get install libdbd-sqlite3-perl sqlite3
-##############################################
+
+use DBI;
+use strict;
 
 my $DEBUG=0;
 my $END=0;
@@ -95,8 +89,6 @@ while (<FILE>) {
         print qq(could not match datetime: $datetime\n);
         next;
     }
-          
-
       $sth->bind_param(1, $hostname);
       $sth->bind_param(2, $ip);
       $sth->bind_param(3, $site);
@@ -123,8 +115,6 @@ while (<FILE>) {
     print "x";
     if ($DEBUG) { print qq(log line not parsed correctly $_); }
   }
-
-   #print "\n" if ($count % 1000 == 0); 
 }
 close FILE;
 
