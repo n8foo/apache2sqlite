@@ -1,13 +1,16 @@
 apache2sqlite
 =============
-takes apache logs and squirts them into a sqlite database 
+a light weight and fast apache2 to sqlite processor, written in Perl. 
+
+##Summary
+processes apache2 logs and stores them into a sqlite database 
 as fast as possible. benchmark on a heavily utilitzed 
 syslog server (2.66Ghz Xeon) still ingested logs at 
 around 19,000 log lines per second. 
 
 ##Uses
 * produce reports and quick metrics.
-* quickly reformat logs by time/date or access type  
+* quickly reformat logs by time/date or access type
   
 ##reqirements
 1. sqlite3
@@ -28,4 +31,8 @@ around 19,000 log lines per second.
 `./apache2sqlite.pl somesite /var/log/apache2/somesite.access.log`
 
 `grep -v "GET /server-status" /var/log/apache2/somesite.access.log | ./apache2sqlite.pl somesite_pruned -`
+
+##Caveats
+* The regex used is solid for my particular LogFormat definition. You will need to customize the regex and the fields for your application. I will include in the wiki a handful of other standard apache LogFormat definitions as examples.
+
 
