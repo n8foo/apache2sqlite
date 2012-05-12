@@ -29,7 +29,6 @@ $dbh->do("CREATE TABLE data (
         day, month, year, hour, minute,
         time, method, url, querystring, protocol,
         status, bytes, bytes_recv, bytes_sent, user_agent)") or die "Couldn't create database: " . $dbh->errstr;;
-#$dbh->do("create index index_ on data(ip);") or die "Couldn't create index: " . $dbh->errstr;
 
 open FILE, $filename or die $!;
 
@@ -52,6 +51,7 @@ while (<FILE>) {
   $count++; 
   if ($END) { last if ( $count > 1000000 ); }
   print "\ntotal rows added: $count ; errors: " if ($count % 10000 == 0); 
+  # regex crazyness
   if( $_ =~ m/^(\S+) +(\d+) (\S+) (\S+) (\S+) (\S+) (\S+) (\[.*\]) (\d+) (\w+) (\S+) \"(\S*)\" (\S*) (\S+) (\S+) (\S+) (\S+) \"(\S*)\" \"(\S*)\" \"(\S*)\" \"((\S+, )*(\S*))\" \"(.*)\"$/ ) {
 
     if ($DEBUG) { print qq($1\n $2\n $3\n $4\n $5\n $6\n $7\n $8\n $9\n $10\n $11\n $12\n $13\n $14\n $15\n $16\n $17\n $18\n $19\n $20\n $21\n $22\n $23\n $24\n); }
